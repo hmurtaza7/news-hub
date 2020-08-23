@@ -25,9 +25,10 @@ gem 'turbolinks', '~> 5'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-gem 'devise', '~> 4.7.2'
 gem 'cancancan', '~> 3.1.0'
+gem 'devise', '~> 4.7.2'
 gem 'kaminari', '~> 1.2.1'
+gem 'omniauth-facebook', '~> 6.0.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -35,6 +36,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'binding.pry' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
+  gem 'dotenv-rails'
 end
 
 group :development do

@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
 
   belongs_to :user
-  has_many :likes
+  has_many :likes, dependent: :delete_all
 
   validates :title, presence: true, length: { maximum: 500 }
   validates :url, presence: true, length: { maximum: 2000 * 1000 }
