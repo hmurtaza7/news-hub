@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+  # before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   def index
-    @posts = Post.all
+    # @posts = Post.all
   end
 
   # GET /posts/1
@@ -12,7 +13,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    # @post = Post.new
   end
 
   # GET /posts/1/edit
@@ -21,7 +22,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
 
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
@@ -47,9 +48,9 @@ class PostsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+    # def set_post
+    #   @post = Post.find(params[:id])
+    # end
 
     # Only allow a trusted parameter "white list" through.
     def post_params
