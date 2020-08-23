@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook]
+         :omniauthable, omniauth_providers: %i[facebook twitter]
 
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :delete_all
@@ -20,11 +20,11 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
+    email = auth.info.email ? auth.info.email : "change@me-#{auth.uid}-#{auth.provider}.com"
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
+      user.email = email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
-      # user.image = auth.info.image
     end
   end
   ### OMNIAUTH METHODS ###
