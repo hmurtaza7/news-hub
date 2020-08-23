@@ -231,7 +231,7 @@ DEPENDENCIES
   cancancan (~> 3.1.0)
   capybara (>= 2.15)
   devise (~> 4.7.2)
-  kaminari
+  kaminari (~> 1.2.1)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   pry

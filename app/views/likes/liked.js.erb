@@ -1,2 +1,8 @@
-$('#post-<%= @post.id %>-like').html("<%= escape_javascript unlike_path(@post.id) %>");
 $('#post-<%= @post.id %>-likes-count').html("<%= @post.likes.count %> likes");
+
+setTimeout(() => {
+  $('#post-<%= @post.id %>-like').html("<%= escape_javascript unlike_path(@post.id) %>");
+}, 2000);
+
+var heartIcon = $('#post-<%= @post.id %>-like .fa-heart')[0];
+$(heartIcon).addClass('beat');
