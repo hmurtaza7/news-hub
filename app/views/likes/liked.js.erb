@@ -1,0 +1,2 @@
+$('#post-<%= @post.id %>-like').html("<%= escape_javascript unlike_path(@post.id) %>");
+$('#post-<%= @post.id %>-likes-count').html("<%= @post.likes.count %> likes");

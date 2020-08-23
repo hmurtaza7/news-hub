@@ -5,10 +5,20 @@
       <h2><%= link_to post.title, post.url, target: "_blank" %></h2>
       <div>
         <span>
-          by <%= post.user.email %>
-          |
-          12 likes
+          by <%= post.user_email %> | 
         </span>
+        <span id="post-<%= post.id %>-likes-count">
+          <%= post.likes_count %> likes
+        </span>
+        <% if user_signed_in? %>
+          <span id="post-<%= post.id %>-like">
+            <% if post.liked %>
+              <%= unlike_path(post.id) %>
+            <% else %>
+              <%= like_path(post.id) %>
+            <% end %>
+          </span>
+        <% end %>
       </div>
     </li>
   <% end %>

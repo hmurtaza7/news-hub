@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
+    @posts = @posts.with_likes(current_user.try(:id))
   end
 
   # GET /posts/1

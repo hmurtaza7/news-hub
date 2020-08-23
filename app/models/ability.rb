@@ -8,8 +8,10 @@ class Ability
     can :read, Post
     if user
       can [:new, :create], Post
-      can [:destroy], Post, user_id: user.id
-      # can :manage, Post, user_id: user.id
+      can :destroy, Post, user_id: user.id
+
+      can :create, Like
+      can :destroy, Like, user_id: user.id
     end
   end
 end
