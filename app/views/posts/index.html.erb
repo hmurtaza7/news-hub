@@ -18,6 +18,10 @@
               <%= like_path(post.id) %>
             <% end %>
           </span>
+
+          <% if can? :destroy, post %>
+            <%= link_to '', post_path(post.id), method: :delete, class: "fas fa-trash float-right" %>
+          <% end %>
         <% end %>
       </div>
     </li>

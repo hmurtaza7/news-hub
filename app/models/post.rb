@@ -15,7 +15,7 @@ class Post < ApplicationRecord
     ] if user_id.present?
 
     select_query = "
-        posts.id, posts.title, posts.url, posts.likes_count,
+        posts.id, posts.title, posts.url, posts.likes_count, posts.user_id,
         posts.created_at :: DATE AS post_date, posts.created_at,
         users.email AS user_email
       "
