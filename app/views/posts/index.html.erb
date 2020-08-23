@@ -5,7 +5,7 @@
       <h2><%= link_to post.title, post.url, target: "_blank" %></h2>
       <div>
         <span>
-          by <%= post.user_email %> | 
+          by <%= post.user_email %> <%= time_ago_in_words post.created_at %> ago | 
         </span>
         <span id="post-<%= post.id %>-likes-count">
           <%= post.likes_count %> likes
@@ -23,3 +23,5 @@
     </li>
   <% end %>
 </ul>
+
+<%= paginate @posts %>

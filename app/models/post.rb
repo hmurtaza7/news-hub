@@ -15,15 +15,16 @@ class Post < ApplicationRecord
     ] if user_id.present?
 
     select_query = "
-        posts.id, posts.title, posts.url,
-        users.email AS user_email,
-        (SELECT COUNT(likes.id) FROM likes WHERE likes.post_id = posts.id) AS likes_count
+        posts.id, posts.title, posts.url, posts.likes_count,
+        posts.created_at :: DATE AS post_date, posts.created_at,
+        users.email AS user_email
       "
     select_query += ", (CASE WHEN likes.id IS NULL THEN false ELSE true END) AS liked" if user_id.present?
 
     self
       .joins(sanitize_sql_array(join_query))
       .select(select_query)
+      .order("post_date DESC, posts.likes_count DESC")
       .distinct
   end
 end

@@ -27,7 +27,7 @@ gem 'turbolinks', '~> 5'
 
 gem 'devise', '~> 4.7.2'
 gem 'cancancan', '~> 3.1.0'
-
+gem 'kaminari', '~> 1.2.1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
