@@ -3,11 +3,8 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = @posts.with_likes(current_user.try(:id)).page(params[:page]).per(50)
-  end
-
-  # GET /posts/1
-  def show
+    @posts = @posts.with_likes_and_user_info(current_user.try(:id))
+                   .page(params[:page]).per(50)
   end
 
   # GET /posts/new
@@ -28,7 +25,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post.destroy
-    redirect_to posts_url, notice: 'Deleted.'
+    redirect_to root_url, notice: 'Deleted.'
   end
 
   private

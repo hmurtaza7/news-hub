@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 500 }
   validates :url, presence: true, length: { maximum: 2000 * 1000 }
 
-  def self.with_likes user_id = nil
+  def self.with_likes_and_user_info user_id = nil
     join_query = "INNER JOIN users ON posts.user_id = users.id"
     join_query = [
       "INNER JOIN users ON posts.user_id = users.id 
@@ -17,7 +17,7 @@ class Post < ApplicationRecord
     select_query = "
         posts.id, posts.title, posts.url, posts.likes_count, posts.user_id,
         posts.created_at :: DATE AS post_date, posts.created_at,
-        users.email AS user_email
+        users.name AS user_name
       "
     select_query += ", (CASE WHEN likes.id IS NULL THEN false ELSE true END) AS liked" if user_id.present?
 
