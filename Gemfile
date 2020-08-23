@@ -26,7 +26,7 @@ gem 'turbolinks', '~> 5'
 # gem 'image_processing', '~> 1.2'
 
 gem 'devise', '~> 4.7.2'
-gem 'cancancan'
+gem 'cancancan', '~> 3.1.0'
 
 
 # Reduces boot times through caching; required in config/boot.rb
